@@ -44,12 +44,12 @@ exports.getAllUsers = async (req, res) => {
 //------------------------------------------------------------------------------------------------------------
 exports.updateUser = async (req, res) => {
   try {
-    console.log(req.body.params)
-    if (req.body.params.newUsername) {
-      const user = await User.findOne({username: req.body.params.username})
-      let oldName = req.body.params.username
-      let newName = req.body.params.newUsername
-      await User.updateOne({username: user.username}, {$set: {username: req.body.params.newUsername}});
+    console.log(req.body)
+    if (req.body.updates.newUsername) {
+      const user = await User.findOne({username: req.body.updates.username})
+      let oldName = req.body.updates.username
+      let newName = req.body.updates.newUsername
+      await User.updateOne({username: user.username}, {$set: {username: req.body.updates.newUsername}});
       res.send({ msg: "Username Updated"})
     }
 //--------------------------------------  

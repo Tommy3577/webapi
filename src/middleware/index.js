@@ -44,16 +44,18 @@ exports.comparePass = async (req, res, next) => {
 };
 //------------------------------------------------------------------------------------------------------------
 exports.updatePass = async (req, res, next) => {
+  console.log(req.body)
   try {
-    if (!req.body.params.newPassword) {
+    if (!req.body.updates.newPassword) {
+      console.log("No password to update")
       next()
     }
     else {
-      req.user = await User.findOne({ username: req.body.params.username})
+      req.user = await User.findOne({ username: req.body.updates.username})
       if (req.user && (await bcrypt.compare(req.body.params.password, req.user.password))) {
-        const newPass = req.body.params.newPassword;
+        const newPass = req.body.updates.newPassword;
         const newHashedPass = await bcrypt.hash(newPass, 8);
-        req.body.params.newPassword = newHashedPass;
+        req.body.updates.newPassword = newHashedPass;
         next()
       }
       else {
