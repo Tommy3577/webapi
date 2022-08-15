@@ -6,15 +6,18 @@ const movieSchema = new mongoose.Schema({
     unique: true,
     required: true,
   },
+//--------------------------------------  
   actor: {
     type: String,
     default: "Not Specified"
   },
+//--------------------------------------  
   favfilm: {
     type: String,
     default: "Not Specified"
   },
 });
+//--------------------------------------  
 
 const Movie = mongoose.model("Movie", movieSchema);
 
