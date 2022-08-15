@@ -53,19 +53,19 @@ exports.updateUser = async (req, res) => {
       res.send({ msg: "Username Updated"})
     }
 //--------------------------------------  
-    else if (req.body.params.newEmail) {
-      const user = await User.findOne({username: req.body.params.username})
-      let oldName = req.body.params.username
-      let newEmail = req.body.params.newEmail
-      await User.updateOne({email: user.email}, {$set: {email: req.body.params.newEmail}});
+    else if (req.body.updates.newEmail) {
+      const user = await User.findOne({username: req.body.updates.username})
+      let oldName = req.body.updates.username
+      let newEmail = req.body.updates.newEmail
+      await User.updateOne({email: user.email}, {$set: {email: req.body.updates.newEmail}});
       res.send({ msg: "E-Mail Updated"})
     }
 //--------------------------------------  
-    else if (req.body.params.newPassword) {
-      const user = await User.findOne({username: req.body.params.username})
-      let oldPass = req.body.params.password
-      let newPass = req.body.params.newPassword
-      await User.updateOne({password: user.password}, {$set: {password: req.body.params.newPassword}})
+    else if (req.body.updates.newPassword) {
+      const user = await User.findOne({username: req.body.updates.username})
+      let oldPass = req.body.updates.password
+      let newPass = req.body.updates.newPassword
+      await User.updateOne({password: user.password}, {$set: {password: req.body.updates.newPassword}})
       res.send({ msg: "Password Updated"})
     }
 //--------------------------------------  
